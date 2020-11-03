@@ -11,8 +11,8 @@ jobs:
           HOST: ${{ secrets.HOST }}
           USERNAME: ${{ secrets.USERNAME }}
           PORT: ${{ secrets.PORT }}
-          KEY: ${{ secrets.KEY }}
+          PASSWORD: ${{ secrets.PASSWORD }}
         with:
           source: "dest/*"
-          target: "/var/www/example.com/public_html"
+          target: "/var"
           strip_components: 1
