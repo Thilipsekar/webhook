@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: deploy website to example.com  
-      - uses: Thilipsekar/webhookt@master    
+      - uses: Thilipsekar/webhook@master    
         env:
           HOST: ${{ secrets.DEPLOY_HOST }}
           USERNAME: ${{ secrets.DEPLOY_USER }}
