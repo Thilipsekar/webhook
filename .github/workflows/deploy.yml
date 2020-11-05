@@ -4,8 +4,8 @@ jobs:
   deploy:    
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
       - name: deploy website to example.com
+      - uses: actions/checkout@master
         env:
           HOST: ${{ secrets.DEPLOY_HOST }}
           USERNAME: ${{ secrets.DEPLOY_USER }}
