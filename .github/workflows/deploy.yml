@@ -1,17 +1,20 @@
-name: website deployment
+name: Node CI
+
 on: [push]
-jobs:  
-  deploy:    
+
+jobs:
+  build:
+
     runs-on: ubuntu-latest
+
     steps:
-      - name: deploy website to example.com  
-      - uses: Thilipsekar/webhook@master    
-        env:
-          HOST: ${{ secrets.DEPLOY_HOST }}
-          USERNAME: ${{ secrets.DEPLOY_USER }}
-          PORT: ${{ secrets.DEPLOY_PORT }}
-          KEY: ${{ secrets.DEPLOY_KEY }}
-        with:
-          source: "dest/*"
-          target: ${{ secrets.DEPLOY_TARGET }}
-          strip_components: 1
+    - uses: actions/checkout@v1
+    - name: Deploy to Server
+      uses: easingthemes/ssh-deploy@v2.1.5
+      env:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          ARGS: "-rltgoDzvO --delete"
+          SOURCE: "dist/"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
